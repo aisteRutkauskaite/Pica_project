@@ -30,6 +30,19 @@ class RegisterForms extends Form
                         ]
                     ]
                 ],
+                'name' => [
+                    'label' => 'NAME',
+                    'type' => 'text',
+                    'validators' => [
+                        'validate_field_not_empty',
+                    ],
+                    'extra' => [
+                        'attr' => [
+                            'placeholder' => 'Enter your full name',
+                            'class' => 'input-field',
+                        ]
+                    ]
+                ],
                 'password' => [
                     'label' => 'PASSWORD',
                     'type' => 'text',

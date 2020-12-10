@@ -21,7 +21,9 @@ class Navigation extends View
         if (App::$session->getUser()) {
             return $nav + [
                     App::$router::getUrl('add') => 'Add',
-                    App::$router::getUrl('list') => 'Edit',
+                    App::$router::getUrl('orders') => 'Orders',
+                    App::$router::getUrl('users') => 'Users',
+                    App::$router::getUrl('edit') => 'Edit',
                     App::$router::getUrl('logout') => 'Logout',
                 ];
         } else {

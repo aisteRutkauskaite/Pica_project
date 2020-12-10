@@ -27,9 +27,8 @@ class AddController extends AuthController
     {
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
-//            $email  = $_SESSION['email'] ;
-//            $items = App::$db->insertRow('items', $clean_inputs);
-            App::$db->insertRow('items', $clean_inputs);
+
+            App::$db->insertRow('pizzas', $clean_inputs);
             $p = 'You added an item';
             header('Location: /index.php');
             exit();

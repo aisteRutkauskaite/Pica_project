@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Controllers;
+
 use App\App;
 use App\Controllers\Base\GuestController;
 use App\Views\BasePage;
 use App\Views\Forms\LoginForm;
+
 class LoginController extends GuestController
 {
     protected $form;
     protected $page;
+
     public function __construct()
     {
         parent::__construct();
@@ -17,17 +20,27 @@ class LoginController extends GuestController
             'title' => 'LOGIN'
         ]);
     }
+
+
     public function login()
     {
+        if (isset($_POST['login'])) {
+            var_dump('fd');
+            return [App::$router::getUrl('login') => 'Login'];
+        }
+
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
             App::$session->login($clean_inputs['email'], $clean_inputs['password']);
             if (App::$session->getUser()) {
-                header('Location: /add');
+                header('Location: /index.php');
                 exit();
             }
         }
-        $this->page->setContent($this->form->render());
-        return $this->page->render();
+
+
+            $this->page->setContent($this->form->render());
+            return $this->page->render();
+
     }
 }

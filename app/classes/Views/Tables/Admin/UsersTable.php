@@ -5,23 +5,19 @@ namespace App\Views\Tables\Admin;
 
 
 use App\App;
-use App\Views\Forms\Admin\DeleteForm;
-use Core\Views\Link;
 use Core\Views\Table;
 
-class ProductsTable extends Table
+class UsersTable  extends Table
 {
     public function __construct()
     {
-        $rows = App::$db->getRowsWhere('orders');
+        $rows = App::$db->getRowsWhere('users');
 
         parent::__construct([
             'headers' => [
                 'ID',
                 'User name',
-                'Pizza name',
-                'Time Ago',
-                'Status'
+                'Role',
             ],
             'rows' => $rows
         ]);

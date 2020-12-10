@@ -15,7 +15,7 @@ class AddForm extends Form
             ],
             'fields' => [
                 'name' => [
-                    'label' => 'ITEM',
+                    'label' => 'PIZZA NAME',
                     'type' => 'text',
                     'validators' => [
                         'validate_field_not_empty',
@@ -40,7 +40,7 @@ class AddForm extends Form
                     ],
                     'extra' => [
                         'attr' => [
-                            'placeholder' => 'Enter item\'s price',
+                            'placeholder' => 'Enter pizzas price',
                             'class' => 'input-field',
                         ],
                     ],
@@ -54,7 +54,7 @@ class AddForm extends Form
                     ],
                     'extra' => [
                         'attr' => [
-                            'placeholder' => 'Enter item\'s image URL',
+                            'placeholder' => 'Enter pizzas image URL',
                             'class' => 'input-field',
                         ],
                     ],

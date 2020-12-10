@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Quicksand&display=swap');
 
 * {
     box-sizing: border-box;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: lightgrey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +35,8 @@ table, th, td {
 form {
     width: 400px;
     margin: 20px 0;
+    background-color: orangered;
+    padding: 20px;
 }
 
 span,
@@ -84,10 +86,10 @@ header {
 nav {
     display: flex;
     justify-content: center;
-    background-color: chocolate;
+    background-color: orangered;
     width: 100vw;
     padding: 20px;
-    font-family: 'Major Mono Display', monospace;
+    font-family: 'Bangers', cursive;
     font-size: 40px;
 }
 
@@ -166,7 +168,7 @@ main {
 
 
 .tittle {
-    font-family: 'Major Mono Display', monospace;
+    font-family: 'Bangers', cursive;
     font-size: 50px;
     margin: 50px;
 }
@@ -174,3 +176,8 @@ main {
 .table {
     width:80%;
 }
+
+.grid-item {
+
+}
+

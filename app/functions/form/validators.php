@@ -52,7 +52,7 @@ function validate_login(array $filtered_input, array &$form): bool
 
 function validate_row_exists(string $field_input, array &$field): bool
 {
-    if (App::$db->rowExists('items', $field_input)) {
+    if (App::$db->rowExists('pizzas', $field_input)) {
         return true;
     }
 

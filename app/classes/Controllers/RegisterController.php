@@ -27,7 +27,8 @@ class RegisterController extends GuestController
     {
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
-            App::$db->insertRow('users', $clean_inputs);
+            unset($clean_inputs['password_repeat']);
+            App::$db->insertRow('users', $clean_inputs + ['role' => 'user']);
             header('Location: /login');
         }
         $this->page->setContent($this->form->render());

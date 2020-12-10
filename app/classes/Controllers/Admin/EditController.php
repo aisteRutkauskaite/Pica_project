@@ -29,11 +29,11 @@ class EditController extends AuthController
             header("Location: /list");
             exit();
         }
-        $this->form->fill(App::$db->getRowById('items', $row_id));
+
+        $this->form->fill(App::$db->getRowById('pizzas', $row_id));
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
-            App::$db->updateRow('items', $row_id, $clean_inputs);
-            $p = 'You edited the item';
+            App::$db->updateRow('pizzas', $row_id, $clean_inputs);
             header('Location: /index.php');
             exit();
         }

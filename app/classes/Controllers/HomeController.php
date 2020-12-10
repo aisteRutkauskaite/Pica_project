@@ -7,12 +7,17 @@ namespace App\Controllers;
 use App\Abstracts\Controller;
 use App\App;
 use App\Views\BasePage;
+use App\Views\Forms\Admin\DeleteForm;
+use App\Views\Forms\LoginForm;
 use App\Views\Navigation;
 use Core\View;
+use App\Views\Content\HomeContent;
+use Core\Views\Form;
 
 class HomeController extends Controller
 {
     protected  $page;
+    protected  $form;
     /**
      * Controller constructor.
      *
@@ -27,8 +32,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->form = new LoginForm();
         $this->page = new BasePage([
-            'title' => 'Shop'
+            'title' => 'Pizzas'
         ]);
     }
 
@@ -59,27 +65,31 @@ class HomeController extends Controller
      */
     function index(): ?string
     {
+
         if (App::$session->getUser()) {
             $h3 = "Sveiki sugrize {$_SESSION['email']}";
         } else {
             $h3 = 'Jus neprisijunges';
         }
+
+        if (isset($_POST['id'])) {
+            $rows = App::$db->getRowsWhere('pizzas');
+            foreach ($rows ?? [] as $key => $pizza) {
+                if ($key == $_POST['id']) {
+                    App::$db->updateRow('pizzas', $key, $pizza);
+                }
+            }
+        }
+
         $content = new View([
-            'tittle' => 'Welcome',
+            'tittle' => 'Welcome to our pizzaria',
             'heading' => $h3,
-            'products' => App::$db->getRowsWhere('items'),
+            'products' => App::$db->getRowsWhere('pizzas'),
         ]);
 
-//        $page = new BasePage([
-//            'tittle' => 'Home',
-//            'content' => $content->render(ROOT . '/app/templates/content/index.tpl.php'),
-//        ]);
-//
-//        return $page->render();
         $this->page->setContent($content->render(ROOT . '/app/templates/content/index.tpl.php'));
 
         return $this->page->render();
-        // TODO: Implement index() method.
     }
 }
 
