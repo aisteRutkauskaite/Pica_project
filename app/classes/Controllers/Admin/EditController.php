@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controllers\Admin;
-
 
 use App\App;
 use App\Controllers\Base\AuthController;
@@ -26,7 +24,7 @@ class EditController extends AuthController
     {
         $row_id = $_GET['id'] ?? null;
         if ($row_id === null) {
-            header("Location: /list");
+            header("Location: /index");
             exit();
         }
 

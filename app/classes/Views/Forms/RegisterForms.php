@@ -30,7 +30,7 @@ class RegisterForms extends Form
                         ]
                     ]
                 ],
-                'name' => [
+                'user_name' => [
                     'label' => 'NAME',
                     'type' => 'text',
                     'validators' => [

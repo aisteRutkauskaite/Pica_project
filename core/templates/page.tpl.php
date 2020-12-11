@@ -2,7 +2,7 @@
 <html lang="">
 <head>
     <meta charset="UTF-8">
-    <title><?php print $data['tittle'] ?></title>
+    <title><?php print $data['title'] ?></title>
     <?php foreach ( $data['css'] as $path) : ?>
     <link rel="stylesheet" href="<?php print $path; ?>">
     <?php endforeach; ?>

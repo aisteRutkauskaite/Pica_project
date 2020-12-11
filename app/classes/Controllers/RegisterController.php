@@ -1,14 +1,10 @@
 <?php
 
-
 namespace App\Controllers;
 
-
 use App\App;
-use App\Controllers\Base\AuthController;
 use App\Controllers\Base\GuestController;
 use App\Views\BasePage;
-use App\Views\Forms\LoginForm;
 use App\Views\Forms\RegisterForms;
 
 class RegisterController extends GuestController

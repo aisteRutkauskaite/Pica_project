@@ -1,18 +1,17 @@
 <?php
 
-
 namespace App\Controllers\Admin;
 
-
+use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
+use App\Views\Forms\Admin\StatusForm;
 use App\Views\Tables\Admin\ProductsTable;
-use Core\Views\Form;
 
 class AdminOrders extends AuthController
 {
-
     protected BasePage $page;
+    protected StatusForm $form;
 
     public function __construct()
     {
@@ -20,10 +19,23 @@ class AdminOrders extends AuthController
         $this->page = new BasePage([
             'title' => 'Orders'
         ]);
+        $this->form = new StatusForm();
     }
 
     public function orderList()
     {
+        $rows = App::$db->getRowsWhere('orders');
+
+        if ($this->form->validate()) {
+            $clean_inputs = $this->form->values();
+
+            foreach ($rows as $id => $row) {
+                if ($clean_inputs['row_id'] == $id) {
+                    $row['status'] = $clean_inputs['status'];
+                    App::$db->updateRow('orders', $id, $row);
+                }
+            }
+        }
 
         $table = new ProductsTable();
         $this->page->setContent($table->render());

@@ -5,6 +5,8 @@ namespace Core;
 use App\App;
 use DateTime;
 
+/** Iki galo nebaigta cookies class */
+
 class Cookies
 {
     public $name;

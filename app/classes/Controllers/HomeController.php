@@ -1,23 +1,20 @@
 <?php
 
-
 namespace App\Controllers;
-
 
 use App\Abstracts\Controller;
 use App\App;
 use App\Views\BasePage;
 use App\Views\Forms\Admin\DeleteForm;
-use App\Views\Forms\LoginForm;
-use App\Views\Navigation;
+use App\Views\Forms\Admin\OrderForm;
 use Core\View;
 use App\Views\Content\HomeContent;
-use Core\Views\Form;
+use Core\Views\Link;
 
 class HomeController extends Controller
 {
-    protected  $page;
-    protected  $form;
+    protected $page;
+    protected $link;
     /**
      * Controller constructor.
      *
@@ -32,7 +29,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->form = new LoginForm();
+
         $this->page = new BasePage([
             'title' => 'Pizzas'
         ]);
@@ -72,19 +69,44 @@ class HomeController extends Controller
             $h3 = 'Jus neprisijunges';
         }
 
-        if (isset($_POST['id'])) {
-            $rows = App::$db->getRowsWhere('pizzas');
-            foreach ($rows ?? [] as $key => $pizza) {
-                if ($key == $_POST['id']) {
-                    App::$db->updateRow('pizzas', $key, $pizza);
+        $home_content = new HomeContent();
+        $url = App::$router::getUrl('edit');
+        $home_content->content();
+        $rows = App::$db->getRowsWhere('pizzas');
+
+        foreach ($rows as $id => &$row) {
+            if (App::$session->getUser()) {
+                if (App::$session->getUser()['role'] === 'admin') {
+                    $this->link = new Link([
+                        'link' => "{$url}?id={$id}",
+                        'text' => 'Edit'
+                    ]);
+
+                    $row['link'] = $this->link->render();
+
+                    $deleteForm = new DeleteForm($id);
+                    $row['delete'] = $deleteForm->render();
+                    $row['order'] = '';
+
+                } elseif (App::$session->getUser()['role'] === 'user') {
+
+                    $orderForm = new OrderForm($row['name']);
+                    $row['order'] = $orderForm->render();
+                    $row['link'] = '';
+                    $row['delete'] = '';
                 }
+            } else {
+                $row['order'] = '';
+                $row['link'] = '';
+                $row['delete'] = '';
             }
         }
 
         $content = new View([
             'tittle' => 'Welcome to our pizzaria',
             'heading' => $h3,
-            'products' => App::$db->getRowsWhere('pizzas'),
+            'redirect' => $home_content->redirect(),
+            'products' => $rows,
         ]);
 
         $this->page->setContent($content->render(ROOT . '/app/templates/content/index.tpl.php'));

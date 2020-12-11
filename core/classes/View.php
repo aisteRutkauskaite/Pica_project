@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Core;
-
 
 class View
 {
@@ -28,5 +26,4 @@ class View
 
         return ob_get_clean();
     }
-
 }

@@ -60,6 +60,7 @@ form p {
     color: white;
     width: 150px;
     cursor: pointer;
+    font-family: 'Bangers', cursive;
 }
 
 .btn:hover {
@@ -79,10 +80,6 @@ textarea.input-field {
   # Navigation
 */
 
-header {
-
-}
-
 nav {
     display: flex;
     justify-content: center;
@@ -93,7 +90,7 @@ nav {
     font-size: 40px;
 }
 
- ul {
+ul {
     display: flex;
     justify-content: flex-end;
     list-style: none;
@@ -102,13 +99,15 @@ nav {
 }
 
 a {
+    padding: 10px;
     color: white;
-    font-weight: bold;
+    background-color: orangered;
     text-decoration: none;
-    margin: 10px 20px;
+    /*margin: 30px;*/
     font-size: 25px;
     cursor: pointer;
     transition: 0.4s;
+    font-family: 'Bangers', cursive;
 }
 
 a:hover {
@@ -143,7 +142,7 @@ a:hover {
 }
 
 img {
-    width:250px;
+    width: 250px;
     height: 250px;
     object-fit: cover;
     transition: 0.5s ease-in-out;
@@ -154,6 +153,7 @@ img {
 .product_bottom {
     width: 150px;
 }
+
 h3, h1 {
     margin: 10px;
 }
@@ -166,7 +166,6 @@ main {
     margin-bottom: 50px;
 }
 
-
 .tittle {
     font-family: 'Bangers', cursive;
     font-size: 50px;
@@ -174,10 +173,16 @@ main {
 }
 
 .table {
-    width:80%;
+    width: 80%;
 }
 
-.grid-item {
-
+tr, td, th {
+    margin: 10px;
+    padding: 10px;
 }
 
+.item_text {
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    margin: 10px;
+}

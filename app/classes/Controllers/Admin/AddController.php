@@ -1,14 +1,10 @@
 <?php
-
-
 namespace App\Controllers\Admin;
-
 
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
 use App\Views\Forms\Admin\AddForm;
-use App\Views\Forms\LoginForm;
 
 class AddController extends AuthController
 {
@@ -23,13 +19,13 @@ class AddController extends AuthController
             'title' => 'ADD'
         ]);
     }
+
     public function add()
     {
         if ($this->form->validate()) {
             $clean_inputs = $this->form->values();
 
             App::$db->insertRow('pizzas', $clean_inputs);
-            $p = 'You added an item';
             header('Location: /index.php');
             exit();
         }
