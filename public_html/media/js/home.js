@@ -61,11 +61,17 @@ const forms = {
      */
     create: {
         init: function () {
-            console.log('Initializing create form...');
-            this.getElement().addEventListener('submit', this.onSubmitListener);
+            if (this.getElement()) {
+                this.getElement().addEventListener('submit', this.onSubmitListener);
+            }
         },
         getElement: function () {
-            return document.getElementById(selectors.forms.create);
+            let form =  document.getElementById(selectors.forms.create);
+            if (!form) {
+                console.log('Create form was not found');
+            }
+
+            return form;
         },
         onSubmitListener: function (e) {
             e.preventDefault();
@@ -91,18 +97,19 @@ const forms = {
     update: {
         init: function () {
             console.log('Initializing update form...');
-            this.elements.form().addEventListener('submit', this.onSubmitListener);
+            if (this.elements.form()) {
+                this.elements.form().addEventListener('submit', this.onSubmitListener);
 
-            const closeBtn = forms.update.elements.modal().querySelector('.close');
-            closeBtn.addEventListener('click', forms.update.onCloseListener);
-
+                const closeBtn = forms.update.elements.modal().querySelector('.close');
+                closeBtn.addEventListener('click', forms.update.onCloseListener);
+            }
         },
         elements: {
             form: function () {
                 let form = document.getElementById(selectors.forms.update);
 
                 if (!form) {
-                    throw Error('Update form was not found, check selector: ' + selectors.forms.update);
+                    console.log('Update form was not found, check selector: ' + selectors.forms.update);
                 }
 
                 return form;

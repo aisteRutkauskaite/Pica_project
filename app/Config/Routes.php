@@ -15,7 +15,7 @@ Router::add('users', "/users", '\App\Controllers\Admin\AdminUsers', 'userList');
 Router::add('user_orders', '/order', '\App\Controllers\User\OrdersController');
 
 // API Routes
-Router::add('api_pizza_get', '/api/pizza/get', \App\Controllers\Admin\API\PizzaApiController::class);
+Router::add('api_pizza_get', '/api/pizza/get', \App\Controllers\Common\API\PizzaApiController::class);
 Router::add('api_pizza_create', '/api/pizza/create', \App\Controllers\Admin\API\PizzaApiController::class, 'create');
 Router::add('api_pizza_edit', '/api/pizza/edit', \App\Controllers\Admin\API\PizzaApiController::class, 'edit');
 Router::add('api_pizza_update', '/api/pizza/update', \App\Controllers\Admin\API\PizzaApiController::class, 'update');
