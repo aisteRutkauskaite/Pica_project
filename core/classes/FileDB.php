@@ -64,12 +64,12 @@ class FileDB
 
             if ($data !== false) {
                 $this->setData(json_decode($data, true) ?? []);
-            } else {
-                $this->setData([]);
             }
 
             return true;
         }
+
+        $this->setData([]);
 
         return false;
     }

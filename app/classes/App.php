@@ -20,7 +20,6 @@ class App
 
         self::$session = new Session();
         self::$router = new Router();
-
     }
 
     public function run()
