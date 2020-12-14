@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers\Auth;
+namespace App\Controllers\Common\Auth;
 
 use App\App;
 use App\Controllers\Base\GuestController;
 use App\Views\BasePage;
-use App\Views\Forms\LoginForm;
+use App\Views\Forms\Common\Auth\LoginForm;
 
 class LoginController extends GuestController
 {

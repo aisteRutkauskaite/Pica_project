@@ -1,8 +1,6 @@
 <?php
 
-
-namespace App\Views\Forms;
-
+namespace App\Views\Forms\Common\Auth;
 
 use Core\Views\Form;
 

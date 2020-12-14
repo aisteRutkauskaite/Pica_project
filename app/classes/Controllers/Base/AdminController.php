@@ -10,7 +10,7 @@ class AdminController
 
     public function __construct()
     {
-        if (!App::$session->getUser()) {
+        if (!App::$session->getUser() || App::$session->getUser()['role'] != 'admin') {
             header("Location: $this->redirect");
             exit();
         }

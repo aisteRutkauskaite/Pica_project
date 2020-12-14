@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controllers\Auth;
+namespace App\Controllers\Common\Auth;
 
 use App\App;
 use App\Controllers\Base\GuestController;
 use App\Views\BasePage;
-use App\Views\Forms\RegisterForms;
+use App\Views\Forms\Common\Auth\RegisterForm;
 
 class RegisterController extends GuestController
 {
-    protected  RegisterForms $form;
+    protected  RegisterForm $form;
     protected BasePage $page;
     public function __construct()
     {
         parent::__construct();
-        $this->form = new RegisterForms();
+        $this->form = new RegisterForm();
         $this->page = new BasePage([
             'title' => 'Register'
         ]);

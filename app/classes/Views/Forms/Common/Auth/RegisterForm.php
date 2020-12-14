@@ -1,12 +1,10 @@
 <?php
 
-
-namespace App\Views\Forms;
-
+namespace App\Views\Forms\Common\Auth;
 
 use Core\Views\Form;
 
-class RegisterForms extends Form
+class RegisterForm extends Form
 {
     public function __construct()
     {
