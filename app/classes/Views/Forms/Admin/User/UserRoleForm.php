@@ -1,14 +1,13 @@
 <?php
 
-
-namespace App\Views\Forms\Admin;
+namespace App\Views\Forms\Admin\User;
 
 
 use Core\Views\Form;
 
-class OrderForm extends Form
+class UserRoleForm extends Form
 {
-    public function __construct($value = null)
+    public function __construct($value = null, $id = null)
     {
         parent::__construct([
             'attr' => [
@@ -17,16 +16,23 @@ class OrderForm extends Form
             'fields' => [
                 'row_id' => [
                     'type' => 'hidden',
-                    'value' => 'ORDER'
+                    'value' => $id
                 ],
-                'name' => [
-                    'type' => 'hidden',
-                    'value' => $value
-                ],
+                'role' => [
+                    'type' => 'select',
+                    'options' => [
+                        'admin' => 'Admin',
+                        'user' => 'User'
+                    ],
+                    'validators' => [
+                        'validate_select',
+                    ],
+                    'value' => $value,
+                ]
             ],
             'buttons' => [
                 'submit' => [
-                    'title' => 'Order',
+                    'title' => 'Set',
                     'type' => 'submit',
                     'extra' => [
                         'attr' => [
@@ -37,6 +43,5 @@ class OrderForm extends Form
             ]
         ]);
     }
+
 }
-
-

@@ -146,18 +146,17 @@ class FileDB
      */
     public function insertRow(string $table_name, array $row, $row_id = null)
     {
-        if (!isset($this->data[$table_name][$row_id])) {
-            if ($row_id == null) {
-                $this->data[$table_name][] = $row;
-                $row_id = array_key_last($this->data[$table_name]);
-            } else {
+        if ($row_id !== null) {
+            if (!$this->rowExists($table_name, $row_id)) {
                 $this->data[$table_name][$row_id] = $row;
+                return false;
             }
-
-            return $row_id;
+        } else {
+            $this->data[$table_name][] = $row;
+            $row_id = array_key_last($this->data[$table_name]);
         }
 
-        return false;
+        return $row_id;
     }
 
     /**

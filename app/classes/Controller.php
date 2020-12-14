@@ -51,4 +51,5 @@ class Controller extends \App\Abstracts\Controller
     {
         // TODO: Implement index() method.
     }
+
 }

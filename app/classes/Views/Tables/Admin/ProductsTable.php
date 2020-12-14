@@ -3,16 +3,16 @@
 namespace App\Views\Tables\Admin;
 
 use App\App;
-use App\Views\Forms\Admin\StatusForm;
+use App\Views\Forms\Admin\OrderStatusForm;
 use Core\Views\Table;
 
 class ProductsTable extends Table
 {
-    protected StatusForm $form;
+    protected OrderStatusForm $form;
 
     public function __construct()
     {
-        $this->form = new StatusForm();
+        $this->form = new OrderStatusForm();
         $rows = App::$db->getRowsWhere('orders');
 
         foreach ($rows as $id => &$row) {
@@ -29,7 +29,7 @@ class ProductsTable extends Table
             $result = "{$days}d {$hours}:{$minutes} H";
             $row['timestamp'] = $result;
 
-            $statusForm = new StatusForm($row['status'], $id);
+            $statusForm = new OrderStatusForm($row['status'], $id);
             $rows[$id]['role_form'] = $statusForm->render();
             unset($row['email'], $row['status']);
         }

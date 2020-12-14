@@ -44,15 +44,16 @@ form p {
     font-weight: bold;
 }
 
-.input-field, .btn {
-    background-color: white;
+input {
     padding: 7px;
     margin: 5px;
-    border: none;
 }
 
-.input-field {
-    width: 100%;
+button {
+    padding: 7px;
+    margin: 5px;
+    background: orangered;
+    color: white;
 }
 
 .btn {
@@ -122,13 +123,21 @@ a:hover {
     /*height: 100vh;*/
 }
 
-.product__section {
+#pizza-grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     align-content: center;
     justify-items: center;
     margin: 0 auto;
+}
+
+#pizza-grid-container .data-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
 }
 
 .item {
@@ -166,7 +175,7 @@ main {
     margin-bottom: 50px;
 }
 
-.tittle {
+.title {
     font-family: 'Bangers', cursive;
     font-size: 50px;
     margin: 50px;
@@ -185,4 +194,19 @@ tr, td, th {
     font-size: 20px;
     font-family: 'Bangers', cursive;
     margin: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: orangered;
+}
+
+.modal .close {
+    color: white;
+    font-size: 50px;
+    cursor:pointer;
 }

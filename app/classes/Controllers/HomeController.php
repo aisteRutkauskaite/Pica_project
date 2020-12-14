@@ -5,8 +5,10 @@ namespace App\Controllers;
 use App\Abstracts\Controller;
 use App\App;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\DeleteForm;
-use App\Views\Forms\Admin\OrderForm;
+use App\Views\Forms\Admin\Pizza\PizzaCreateForm;
+use App\Views\Forms\Admin\Pizza\PizzaUpdateForm;
+use App\Views\Forms\Admin\PizzaDeleteForm;
+use App\Views\Forms\Admin\OrderCreateForm;
 use Core\View;
 use App\Views\Content\HomeContent;
 use Core\Views\Link;
@@ -14,7 +16,7 @@ use Core\Views\Link;
 class HomeController extends Controller
 {
     protected $page;
-    protected $link;
+
     /**
      * Controller constructor.
      *
@@ -29,87 +31,55 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
         $this->page = new BasePage([
-            'title' => 'Pizzas'
+            'title' => 'Pizzas',
+            'js' => ['/media/js/home.js']
         ]);
     }
 
     /**
-     * This method builds or sets
-     * current $page content
-     * renders it and returns HTML
-     *
-     * So if we have ex.: ProductsController,
-     * it can have methods responsible for
-     * index() (main page, usualy a list),
-     * view() (preview single),
-     * create() (form for creating),
-     * edit() (form for editing)
-     * delete()
-     *
-     * These methods can then be called on each page accordingly, ex.:
-     * add.php:
-     * $controller = new PixelsController();
-     * print $controller->add();
-     *
-     *
-     * my.php:
-     * $controller = new ProductsController();
-     * print $controller->my();
+     * Home Controller Index
      *
      * @return string|null
+     * @throws \Exception
      */
-    function index(): ?string
+    public function index(): ?string
     {
+        $user = App::$session->getUser();
 
-        if (App::$session->getUser()) {
-            $h3 = "Sveiki sugrize {$_SESSION['email']}";
-        } else {
-            $h3 = 'Jus neprisijunges';
-        }
-
-        $home_content = new HomeContent();
-        $url = App::$router::getUrl('edit');
-        $home_content->content();
-        $rows = App::$db->getRowsWhere('pizzas');
-
-        foreach ($rows as $id => &$row) {
-            if (App::$session->getUser()) {
-                if (App::$session->getUser()['role'] === 'admin') {
-                    $this->link = new Link([
-                        'link' => "{$url}?id={$id}",
-                        'text' => 'Edit'
-                    ]);
-
-                    $row['link'] = $this->link->render();
-
-                    $deleteForm = new DeleteForm($id);
-                    $row['delete'] = $deleteForm->render();
-                    $row['order'] = '';
-
-                } elseif (App::$session->getUser()['role'] === 'user') {
-
-                    $orderForm = new OrderForm($row['name']);
-                    $row['order'] = $orderForm->render();
-                    $row['link'] = '';
-                    $row['delete'] = '';
-                }
-            } else {
-                $row['order'] = '';
-                $row['link'] = '';
-                $row['delete'] = '';
+        if ($user) {
+            if ($user['role'] == 'admin') {
+                $forms = [
+                    'create' => (new PizzaCreateForm())->render(),
+                    'update' => (new PizzaUpdateForm())->render()
+                ];
             }
+
+            $heading = "Zdarova, {$user['user_name']}";
+            $links = [
+                'login' => (new Link([
+                    'url' => App::$router::getUrl('logout'),
+                    'text' => 'Logout'
+                ]))->render()
+            ];
+        } else {
+            $heading = 'Prisijunkite';
+            $links = [
+                'login' => (new Link([
+                    'url' => App::$router::getUrl('login'),
+                    'text' => 'Login'
+                ]))->render()
+            ];
         }
 
-        $content = new View([
-            'tittle' => 'Welcome to our pizzaria',
-            'heading' => $h3,
-            'redirect' => $home_content->redirect(),
-            'products' => $rows,
-        ]);
+        $content = (new View([
+            'title' => 'Welcome to our pizzaria',
+            'heading' => $heading,
+            'forms' => $forms ?? [],
+            'links' => $links ?? []
+        ]))->render(ROOT . '/app/templates/content/index.tpl.php');
 
-        $this->page->setContent($content->render(ROOT . '/app/templates/content/index.tpl.php'));
+        $this->page->setContent($content);
 
         return $this->page->render();
     }

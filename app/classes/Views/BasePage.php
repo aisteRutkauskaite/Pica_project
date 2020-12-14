@@ -12,21 +12,35 @@ class BasePage extends Page
 
         parent::__construct($data + [
                 'css' => [
-                    '/css/styles.css'
+                    '/media/css/styles.css'
                 ],
+                'js' => [],
                 'header' => $nav->render()
             ]);
     }
 
-    public function setTitle($title) {
-         $this->data['title'] = $title;
+    public function addCSS($link): void
+    {
+        $this->data['css'][] = $link;
     }
 
-    public function setHeader($header) {
+    public function addJS($link): void
+    {
+        $this->data['js'][] = $link;
+    }
+
+    public function setTitle($title): void
+    {
+        $this->data['title'] = $title;
+    }
+
+    public function setHeader($header): void
+    {
         $this->data['header'] = $header;
     }
 
-    public function setContent($content) {
+    public function setContent($content): void
+    {
         $this->data['content'] = $content;
     }
 }

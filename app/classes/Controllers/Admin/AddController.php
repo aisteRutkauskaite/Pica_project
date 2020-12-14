@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\AddForm;
+use App\Views\Forms\Admin\PizzaCreateForm;
 
 class AddController extends AuthController
 {
@@ -14,7 +14,7 @@ class AddController extends AuthController
     public function __construct()
     {
         parent::__construct();
-        $this->form = new AddForm();
+        $this->form = new PizzaCreateForm();
         $this->page = new BasePage([
             'title' => 'ADD'
         ]);

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Views\Forms\Admin;
+namespace App\Views\Forms\Admin\Order;
 
-namespace App\Views\Forms\Admin;
+
 use Core\Views\Form;
 
-class DeleteForm extends Form
+class OrderCreateForm extends Form
 {
     public function __construct($value = null)
     {
@@ -17,23 +17,26 @@ class DeleteForm extends Form
             'fields' => [
                 'row_id' => [
                     'type' => 'hidden',
-                    'value' => $value,
-                    'validators' => [
-                        'validate_row_exists'
-                    ]
-                ]
+                    'value' => 'ORDER'
+                ],
+                'name' => [
+                    'type' => 'hidden',
+                    'value' => $value
+                ],
             ],
             'buttons' => [
                 'submit' => [
-                    'title' => 'Delete!',
+                    'title' => 'Order',
                     'type' => 'submit',
                     'extra' => [
                         'attr' => [
-                            'class' => 'btn',
-                        ],
-                    ],
-                ]
-            ],
+                            'class' => 'btn'
+                        ]
+                    ]
+                ],
+            ]
         ]);
     }
 }
+
+

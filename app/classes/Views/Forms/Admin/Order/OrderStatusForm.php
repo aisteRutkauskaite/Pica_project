@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Views\Forms\Admin;
+namespace App\Views\Forms\Admin\Order;
 
 
 use Core\Views\Form;
 
-class StatusForm extends Form
+class OrderStatusForm extends Form
 {
     public function __construct($value = null, $id = null)
     {

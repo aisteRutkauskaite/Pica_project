@@ -5,13 +5,13 @@ namespace App\Controllers\Admin;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\StatusForm;
+use App\Views\Forms\Admin\OrderStatusForm;
 use App\Views\Tables\Admin\ProductsTable;
 
 class AdminOrders extends AuthController
 {
     protected BasePage $page;
-    protected StatusForm $form;
+    protected OrderStatusForm $form;
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class AdminOrders extends AuthController
         $this->page = new BasePage([
             'title' => 'Orders'
         ]);
-        $this->form = new StatusForm();
+        $this->form = new OrderStatusForm();
     }
 
     public function orderList()

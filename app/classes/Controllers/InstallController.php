@@ -10,6 +10,8 @@ class InstallController
     public function install()
     {
         App::$db = new FileDB(DB_FILE);
+        App::$db->load();
+
         App::$db->createTable('users');
         App::$db->insertRow('users', ['email' => 'test@test.lt', 'password' => 'test', 'user_name' => 'testas', 'role' => 'user']);
         App::$db->insertRow('users', ['email' => 'pica@skani.lt', 'password' => 'pica', 'user_name' => 'Picis', 'role' => 'admin']);

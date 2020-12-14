@@ -1,18 +1,15 @@
 <?php
 
 
-namespace App\Views\Forms\Admin;
+namespace App\Views\Forms\Admin\Pizza;
 
 
 use Core\Views\Form;
 
-class AddForm extends Form
+class PizzaBaseForm extends Form
 {
     public function __construct() {
         parent::__construct([
-            'attr' => [
-                'method' => 'POST',
-            ],
             'fields' => [
                 'name' => [
                     'label' => 'PIZZA NAME',
@@ -23,7 +20,6 @@ class AddForm extends Form
                     'extra' => [
                         'attr' => [
                             'placeholder' => 'Enter item\'s name',
-                            'class' => 'input-field',
                         ],
                     ],
                 ],
@@ -41,7 +37,6 @@ class AddForm extends Form
                     'extra' => [
                         'attr' => [
                             'placeholder' => 'Enter pizzas price',
-                            'class' => 'input-field',
                         ],
                     ],
                 ],
@@ -55,22 +50,11 @@ class AddForm extends Form
                     'extra' => [
                         'attr' => [
                             'placeholder' => 'Enter pizzas image URL',
-                            'class' => 'input-field',
                         ],
                     ],
                 ],
             ],
-            'buttons' => [
-                'send' => [
-                    'title' => 'ADD',
-                    'type' => 'submit',
-                    'extra' => [
-                        'attr' => [
-                            'class' => 'btn',
-                        ],
-                    ],
-                ],
-            ],
+            // No buttons since they will be defined in Extends
         ]);
     }
 }

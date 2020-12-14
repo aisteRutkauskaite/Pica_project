@@ -4,7 +4,7 @@ define('ROOT', __DIR__);
 define('DB_FILE', ROOT . '/app/data/db.json');
 // App
 require 'app/functions/form/validators.php';
-require 'app/classes/App.php';
+
 // Core
 require 'core/functions/file.php';
 require 'core/functions/html.php';

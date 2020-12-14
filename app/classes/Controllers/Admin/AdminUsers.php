@@ -5,13 +5,13 @@ namespace App\Controllers\Admin;
 use App\App;
 use App\Controllers\Base\AuthController;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\RoleForm;
+use App\Views\Forms\Admin\UserRoleForm;
 use App\Views\Tables\Admin\UsersTable;
 
 class AdminUsers extends AuthController
 {
     protected BasePage $page;
-    protected RoleForm $form;
+    protected UserRoleForm $form;
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class AdminUsers extends AuthController
         $this->page = new BasePage([
             'title' => 'Users'
         ]);
-        $this->form = new RoleForm();
+        $this->form = new UserRoleForm();
     }
 
     public function userList()
