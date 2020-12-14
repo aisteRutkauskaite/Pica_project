@@ -27,9 +27,10 @@ class PizzaApiController
             if ($role == 'admin') {
                 $pizza['buttons']['delete'] = 'Delete';
                 $pizza['buttons']['edit'] = 'Edit';
-            } elseif ($role === 'user') {
-                $pizza['buttons']['order'] = 'Order';
             }
+//            } elseif ($role === 'user') {
+//                $pizza['buttons']['order'] = 'Order';
+//            }
         }
 
         // Setting "what" to json-encode
