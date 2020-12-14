@@ -3,12 +3,19 @@
 namespace App\Controllers\Admin;
 
 use App\App;
-use App\Controllers\Base\AuthController;
+use App\Controllers\Base\AdminController;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\UserRoleForm;
+use App\Views\Forms\Admin\User\UserRoleForm;
 use App\Views\Tables\Admin\UsersTable;
 
-class AdminUsers extends AuthController
+/**
+ * Class AdminUsers
+ *
+ * TODO Make an API appraach to this shit
+ * @package App\Controllers\Admin
+ * @author  Dainius Vaičiulis   <denncath@gmail.com>
+ */
+class UsersController extends AdminController
 {
     protected BasePage $page;
     protected UserRoleForm $form;
@@ -22,22 +29,20 @@ class AdminUsers extends AuthController
         $this->form = new UserRoleForm();
     }
 
-    public function userList()
+    public function index()
     {
-        $rows = App::$db->getRowsWhere('users');
-
         if ($this->form->validate()) {
-            $clean_inputs = $this->form->values();
+            $id = $this->form->value('row_id');
 
-            foreach ($rows as $id => $row) {
-                if ($clean_inputs['row_id'] == $id) {
-                    $row['role'] = $clean_inputs['role'];
-                    App::$db->updateRow('users', $id, $row);
-                }
-            }
+            $user = App::$db->getRowById('users', $id);
+            $user['role'] = $this->form->value('role');
+
+            App::$db->updateRow('users', $id, $user);
         }
+
         $table = new UsersTable();
         $this->page->setContent($table->render());
+
         return $this->page->render();
     }
 }

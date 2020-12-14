@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Common;
 
 use App\Abstracts\Controller;
 use App\App;
@@ -13,7 +13,7 @@ use Core\View;
 use App\Views\Content\HomeContent;
 use Core\Views\Link;
 
-class HomeController extends Controller
+class HomeController
 {
     protected $page;
 

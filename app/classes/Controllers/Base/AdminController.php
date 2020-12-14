@@ -4,7 +4,7 @@ namespace App\Controllers\Base;
 
 use App\App;
 
-class AuthController
+class AdminController
 {
     protected string $redirect =  '/login';
 

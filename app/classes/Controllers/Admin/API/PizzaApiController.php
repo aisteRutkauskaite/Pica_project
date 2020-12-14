@@ -16,21 +16,13 @@ class PizzaApiController extends AdminController
         // This is a helper class to make sure
         // we use the same API json response structure
         $response = new Response();
-
         $form = new PizzaCreateForm();
-        $role = App::$session->getUser() ? App::$session->getUser()['role'] : null;
 
         if ($form->validate()) {
             $pizza = $form->values();
             $pizza['id'] = App::$db->insertRow('pizzas', $form->values());
-
-            if ($role == 'admin') {
-                $pizza['buttons']['delete'] = 'Delete';
-                $pizza['buttons']['edit'] = 'Edit';
-            } elseif ($role === 'user') {
-                $pizza['buttons']['order'] = 'Order';
-            }
-
+            $pizza['buttons']['delete'] = 'Delete';
+            $pizza['buttons']['edit'] = 'Edit';
             $response->setData($pizza);
         } else {
             $response->setErrors($form->getErrors());
@@ -51,11 +43,6 @@ class PizzaApiController extends AdminController
         if ($id === null) {
             $response->appendError('ApiController could not update, since ID is not provided! Check JS!');
         } else {
-
-            // This is a helper class to make sure
-            // we use the same API json response structure
-            $response = new Response();
-
             $pizza = App::$db->getRowById('pizzas', $id);
             $pizza['id'] = $id;
 
@@ -91,14 +78,8 @@ class PizzaApiController extends AdminController
 
                 $pizza = $form->values();
                 $pizza['id'] = $id;
-                $role = App::$session->getUser() ? App::$session->getUser()['role'] : null;
-
-                if ($role == 'admin') {
-                    $pizza['buttons']['delete'] = 'Delete';
-                    $pizza['buttons']['edit'] = 'Edit';
-                } elseif ($role === 'user') {
-                    $pizza['buttons']['order'] = 'Order';
-                }
+                $pizza['buttons']['delete'] = 'Delete';
+                $pizza['buttons']['edit'] = 'Edit';
 
                 $response->setData($pizza);
             } else {

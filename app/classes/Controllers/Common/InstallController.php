@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Common;
 
 use App\App;
 use Core\FileDB;

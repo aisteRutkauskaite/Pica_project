@@ -28,11 +28,6 @@ class OrderCreateForm extends Form
                 'submit' => [
                     'title' => 'Order',
                     'type' => 'submit',
-                    'extra' => [
-                        'attr' => [
-                            'class' => 'btn'
-                        ]
-                    ]
                 ],
             ]
         ]);

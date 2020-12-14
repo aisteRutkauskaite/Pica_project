@@ -33,12 +33,6 @@ class UserRoleForm extends Form
             'buttons' => [
                 'submit' => [
                     'title' => 'Set',
-                    'type' => 'submit',
-                    'extra' => [
-                        'attr' => [
-                            'class' => 'btn'
-                        ]
-                    ]
                 ],
             ]
         ]);

@@ -36,11 +36,6 @@ class OrderStatusForm extends Form
                 'submit' => [
                     'title' => 'Set',
                     'type' => 'submit',
-                    'extra' => [
-                        'attr' => [
-                            'class' => 'btn'
-                        ]
-                    ]
                 ],
             ]
         ]);

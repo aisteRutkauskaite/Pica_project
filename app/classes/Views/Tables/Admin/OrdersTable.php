@@ -3,10 +3,10 @@
 namespace App\Views\Tables\Admin;
 
 use App\App;
-use App\Views\Forms\Admin\OrderStatusForm;
+use App\Views\Forms\Admin\Order\OrderStatusForm;
 use Core\Views\Table;
 
-class ProductsTable extends Table
+class OrdersTable extends Table
 {
     protected OrderStatusForm $form;
 
@@ -21,16 +21,18 @@ class ProductsTable extends Table
 
             $row['user_name'] = $user['user_name'];
 
-            $timeStamp = date('Y-m-d H:i:s', $row['timestamp']);
-            $difference = abs(strtotime("now") - strtotime($timeStamp));
+            $timestamp = date('Y-m-d H:i:s', $row['timestamp']);
+            $difference = abs(strtotime("now") - strtotime($timestamp));
             $days = floor($difference / (3600 * 24));
             $hours = floor($difference / 3600);
             $minutes = floor(($difference - ($hours * 3600)) / 60);
             $result = "{$days}d {$hours}:{$minutes} H";
+
             $row['timestamp'] = $result;
 
             $statusForm = new OrderStatusForm($row['status'], $id);
-            $rows[$id]['role_form'] = $statusForm->render();
+            $row['status_form'] = $statusForm->render();
+
             unset($row['email'], $row['status']);
         }
 
